@@ -238,7 +238,46 @@
     .ba-pair{grid-template-columns:1fr}
     .ba-pane img{height:220px}
   }
+  .recaptcha-wrap{margin:8px 0 6px;display:flex;justify-content:center}
+  .recaptcha-error{color:#E53E3E;font-size:12px;text-align:center;margin-top:6px;display:none;font-weight:600}
 </style>
+<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+<script>
+var recaptchaWidgets = [];
+function onRecaptchaLoad() {
+  var containers = document.querySelectorAll('.g-recaptcha');
+  containers.forEach(function(el, i) {
+    var widgetId = grecaptcha.render(el, {
+      sitekey: '6LfsYBQtAAAAENaSc8RXEu78LsxCT7iUtkep-K8'
+    });
+    el.setAttribute('data-widget-id', widgetId);
+    recaptchaWidgets.push({el: el, id: widgetId});
+  });
+}
+function submitForm(btn) {
+  var container = btn.parentElement;
+  // Walk up to find the form body
+  var p = btn;
+  for (var i = 0; i < 5; i++) {
+    p = p.parentElement;
+    if (!p) break;
+    var rc = p.querySelector('.g-recaptcha');
+    if (rc) { container = p; break; }
+  }
+  var rcEl = container ? container.querySelector('.g-recaptcha') : null;
+  var errorEl = container ? container.querySelector('.recaptcha-error') : null;
+  var widgetId = rcEl ? rcEl.getAttribute('data-widget-id') : null;
+  var response = (widgetId !== null && widgetId !== undefined)
+    ? grecaptcha.getResponse(parseInt(widgetId))
+    : grecaptcha.getResponse();
+  if (!response || response.length === 0) {
+    if (errorEl) errorEl.style.display = 'block';
+    return;
+  }
+  if (errorEl) errorEl.style.display = 'none';
+  window.location.href = 'https://ecoairconcleaning.com.au/thank-you/';
+}
+</script>
 </head>
 <body>
 
@@ -291,7 +330,9 @@
             </select>
           </div>
           <div class="fr"><label>Message (optional)</label><textarea placeholder="AC details, mould concerns, number of units..."></textarea></div>
-          <button class="btn-submit" type="button" onclick="window.location.href='https://ecoairconcleaning.com.au/thank-you/'">Send My Free Quote Request</button>
+          <div class="recaptcha-wrap"><div class="g-recaptcha"></div></div>
+          <div class="recaptcha-error">Please tick the checkbox above to confirm you are not a robot.</div>
+          <button class="btn-submit" type="button" onclick="submitForm(this)">Send My Free Quote Request</button>
           <p class="form-note">No spam. No obligation. 100% free.</p>
         </div>
       </div>
@@ -792,7 +833,9 @@
           </select>
         </div>
         <div class="fr"><label>Message</label><textarea placeholder="Number of units, mould concerns, any other details..."></textarea></div>
-        <button class="btn-submit" type="button" onclick="window.location.href='https://ecoairconcleaning.com.au/thank-you/'">Send My Free Quote Request</button>
+        <div class="recaptcha-wrap"><div class="g-recaptcha"></div></div>
+          <div class="recaptcha-error">Please tick the checkbox above to confirm you are not a robot.</div>
+          <button class="btn-submit" type="button" onclick="submitForm(this)">Send My Free Quote Request</button>
         <p class="form-note">100% free. No spam. No obligation.</p>
       </div>
     </div>
