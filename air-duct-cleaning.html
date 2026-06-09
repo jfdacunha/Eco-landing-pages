@@ -61,14 +61,14 @@
   .form-band{background:var(--blue-deep);padding:18px 28px;text-align:center}
   .form-band h3{font-size:19px;font-weight:800;color:white;margin:0}
   .form-band p{font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px}
-  .form-body{padding:22px 28px 28px}
+  .form-body{padding:18px 24px 24px}
   .fr{margin-bottom:11px}
-  .fr label{display:block;font-size:11px;font-weight:700;color:var(--slate);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
-  .fr input,.fr select,.fr textarea{width:100%;border:1.5px solid #E2E8F0;border-radius:10px;padding:11px 14px;font-family:"DM Sans",sans-serif;font-size:14px;color:var(--charcoal);transition:border-color .2s,box-shadow .2s;background:#FAFCFF;outline:none}
+  .fr label{display:block;font-size:10px;font-weight:700;color:var(--slate);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+  .fr input,.fr select,.fr textarea{width:100%;border:1.5px solid #E2E8F0;border-radius:10px;padding:9px 12px;font-family:"DM Sans",sans-serif;font-size:13px;color:var(--charcoal);transition:border-color .2s,box-shadow .2s;background:#FAFCFF;outline:none}
   .fr input:focus,.fr select:focus,.fr textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,122,196,0.12);background:white}
   .fr textarea{resize:vertical;min-height:62px}
   .fg{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-  .btn-submit{width:100%;background:var(--green);color:white;font-family:"Syne",sans-serif;font-weight:800;font-size:16px;padding:15px;border:none;border-radius:12px;cursor:pointer;margin-top:6px;transition:all .2s;box-shadow:0 4px 16px rgba(45,190,116,0.4)}
+  .btn-submit{width:100%;background:var(--green);color:white;font-family:"Syne",sans-serif;font-weight:700;font-size:14px;padding:12px;border:none;border-radius:10px;cursor:pointer;margin-top:6px;transition:all .2s;box-shadow:0 4px 14px rgba(45,190,116,0.35)}
   .btn-submit:hover{background:var(--green-dark);transform:translateY(-1px)}
   .form-note{text-align:center;font-size:12px;color:var(--slate);margin-top:9px}
   .wave{overflow:hidden;line-height:0;margin-top:52px}
@@ -159,13 +159,16 @@
   .ben-pair .thumb img{height:135px}
 
   /* AREAS */
-  .areas-bg{background:linear-gradient(180deg,#EFF6FF 0%,var(--mist) 100%)}
-  .areas-hdr{text-align:center;margin-bottom:44px}
-  .areas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .area-chip{background:white;border:1px solid #DBEAFE;border-radius:10px;padding:14px 16px;text-align:center;transition:all .2s;cursor:default}
-  .area-chip:hover{border-color:var(--blue);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
-  .area-name{font-family:"Syne",sans-serif;font-weight:700;font-size:14px;color:var(--blue-deep)}
-  .area-sub{font-size:12px;color:var(--slate);margin-top:3px}
+  /* MAP SECTION */
+  .map-bg{background:linear-gradient(180deg,#EFF6FF 0%,var(--mist) 100%)}
+  .map-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:48px}
+  .map-circle-wrap{display:flex;justify-content:center;align-items:center}
+  .map-circle{width:380px;height:380px;border-radius:50%;overflow:hidden;border:6px solid white;box-shadow:0 0 0 3px var(--blue),var(--shadow-lg);position:relative;flex-shrink:0}
+  .map-circle iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
+  .map-circle-pulse{position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 3px rgba(26,122,196,0.25)}
+  .map-points{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .map-point{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--charcoal);font-weight:500}
+  .map-dot{width:10px;height:10px;border-radius:50%;background:var(--blue);flex-shrink:0}
 
   /* FAQ */
   .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
@@ -241,7 +244,8 @@
     .intro-grid{grid-template-columns:1fr 1fr}
     .proc-steps{grid-template-columns:1fr 1fr;gap:32px}
     .proc-steps::before{display:none}
-    .areas-grid{grid-template-columns:repeat(3,1fr)}
+    .map-layout{grid-template-columns:1fr;gap:32px}
+    .map-circle{width:300px;height:300px}
     .faq-grid{grid-template-columns:1fr}
     .prob-photos{order:-1}
     .mini-grid{grid-template-columns:1fr 1fr}
@@ -252,7 +256,8 @@
     .btn-primary,.btn-ws,.btn-gs{width:100%;justify-content:center}
     .ba-pair{grid-template-columns:1fr}
     .ba-pane img{height:220px}
-    .areas-grid{grid-template-columns:repeat(2,1fr)}
+    .map-circle{width:260px;height:260px}
+    .map-points{grid-template-columns:1fr}
   }
   .recaptcha-wrap{margin:8px 0 6px;display:flex;justify-content:center}
   .recaptcha-error{color:#E53E3E;font-size:12px;text-align:center;margin-top:6px;display:none;font-weight:600}
@@ -633,26 +638,44 @@ function submitForm(btn) {
 </section>
 
 <!-- SERVICE AREAS -->
-<section class="section areas-bg">
+<section class="section map-bg">
   <div class="container">
-    <div class="areas-hdr">
+    <div style="text-align:center;max-width:620px;margin:0 auto">
       <p class="eyebrow">Air Duct Cleaning Near Me</p>
-      <h2 class="heading">Air Duct Cleaning Across All Sydney Suburbs</h2>
-      <p class="subtext" style="max-width:540px;margin:0 auto;text-align:center">We cover the entire Sydney metropolitan area. If you are searching for duct cleaning near me or air duct cleaning Sydney, we are your local team.</p>
+      <h2 class="heading">We Cover the Entire Sydney Metropolitan Area</h2>
+      <p class="subtext">From the Eastern Suburbs to Penrith, North Sydney to Sutherland. If you are searching for air duct cleaning near me, we are your local Sydney team.</p>
     </div>
-    <div class="areas-grid">
-      <div class="area-chip"><div class="area-name">Parramatta</div><div class="area-sub">Air Duct Cleaning</div></div>
-      <div class="area-chip"><div class="area-name">North Sydney</div><div class="area-sub">Ducted AC Cleaning</div></div>
-      <div class="area-chip"><div class="area-name">Inner West</div><div class="area-sub">Duct and Vent Cleaning</div></div>
-      <div class="area-chip"><div class="area-name">Eastern Suburbs</div><div class="area-sub">Air Duct Service</div></div>
-      <div class="area-chip"><div class="area-name">Hills District</div><div class="area-sub">Ductwork Cleaning</div></div>
-      <div class="area-chip"><div class="area-name">Penrith</div><div class="area-sub">Ducted AC Cleaning</div></div>
-      <div class="area-chip"><div class="area-name">Hornsby</div><div class="area-sub">Air Duct Cleaning</div></div>
-      <div class="area-chip"><div class="area-name">Blacktown</div><div class="area-sub">Duct Vent Cleaning</div></div>
-      <div class="area-chip"><div class="area-name">Liverpool</div><div class="area-sub">Air Duct Service</div></div>
-      <div class="area-chip"><div class="area-name">Sutherland</div><div class="area-sub">Duct Cleaning Sydney</div></div>
-      <div class="area-chip"><div class="area-name">Manly</div><div class="area-sub">Ducted AC Clean</div></div>
-      <div class="area-chip"><div class="area-name">Castle Hill</div><div class="area-sub">Air Duct Maintenance</div></div>
+    <div class="map-layout">
+      <div class="map-circle-wrap">
+        <div class="map-circle">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d424146.02715945663!2d150.9578366!3d-33.8688197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sau!4v1700000000000!5m2!1sen!2sau"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <div class="map-circle-pulse"></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:22px;font-weight:800;margin-bottom:8px;color:var(--blue-deep)">Servicing All Sydney Suburbs</h3>
+        <p class="subtext" style="margin-bottom:24px">We send certified technicians across the entire Sydney metro area seven days a week. Same-day bookings available.</p>
+        <ul class="map-points">
+          <li><span class="map-dot"></span> Parramatta</li>
+          <li><span class="map-dot"></span> North Sydney</li>
+          <li><span class="map-dot"></span> Inner West</li>
+          <li><span class="map-dot"></span> Eastern Suburbs</li>
+          <li><span class="map-dot"></span> Hills District</li>
+          <li><span class="map-dot"></span> Penrith</li>
+          <li><span class="map-dot"></span> Hornsby</li>
+          <li><span class="map-dot"></span> Blacktown</li>
+          <li><span class="map-dot"></span> Liverpool</li>
+          <li><span class="map-dot"></span> Sutherland</li>
+          <li><span class="map-dot"></span> Manly</li>
+          <li><span class="map-dot"></span> Castle Hill</li>
+        </ul>
+        <a href="tel:0483928714" class="btn-g" style="margin-top:28px">Book in Your Area Now</a>
+      </div>
     </div>
   </div>
 </section>
