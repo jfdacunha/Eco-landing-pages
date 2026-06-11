@@ -276,8 +276,6 @@
     .ba-pair{gap:0}
     .ba-pane{margin:0;padding:0}
     .wave svg{height:24px}}
-  .recaptcha-wrap{margin:8px 0 6px;display:flex;justify-content:center}
-  .recaptcha-error{color:#E53E3E;font-size:12px;text-align:center;margin-top:6px;display:none;font-weight:600}
 
   /* CAROUSEL ARROWS */
   .carousel-outer{position:relative}
@@ -311,43 +309,98 @@
     .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
     .gallery-item.tall{grid-row:span 1}
   }
+
+  /* ── ELEMENTOR FORM OVERRIDES ── */
+  .elementor-form .elementor-field-textual,
+  .elementor-form select.elementor-field-textual {
+    width: 100%;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--charcoal);
+    background: #FAFCFF;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .elementor-form .elementor-field-textual:focus,
+  .elementor-form select.elementor-field-textual:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(26,122,196,0.12);
+    background: white;
+  }
+  .elementor-form textarea.elementor-field-textual {
+    resize: vertical;
+    min-height: 65px;
+  }
+  .elementor-form .elementor-field-group {
+    margin-bottom: 11px;
+    padding: 0;
+  }
+  .elementor-form .elementor-field-group:last-child {
+    margin-bottom: 0;
+  }
+  .elementor-form .elementor-select-wrapper {
+    position: relative;
+  }
+  .elementor-form .elementor-select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--slate);
+    pointer-events: none;
+  }
+  .elementor-form .select-caret-down-wrapper,
+  .elementor-form .e-font-icon-svg {
+    display: none;
+  }
+  .elementor-form .e-form__buttons {
+    margin-top: 6px;
+  }
+  .elementor-form .elementor-button {
+    width: 100%;
+    background: var(--green);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .2s;
+    box-shadow: 0 4px 16px rgba(45,190,116,0.4);
+    text-align: center;
+    display: block;
+  }
+  .elementor-form .elementor-button:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+  }
+  .elementor-form .elementor-button-text {
+    font-size: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+  }
+  .elementor-form .elementor-field-type-submit {
+    padding: 0;
+  }
+  .elementor-form-fields-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
 </style>
-<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+
 <script>
-var recaptchaWidgets = [];
-function onRecaptchaLoad() {
-  var containers = document.querySelectorAll('.g-recaptcha');
-  containers.forEach(function(el, i) {
-    var widgetId = grecaptcha.render(el, {
-      sitekey: '6LfsYBQtAAAAENaSc8RXEu78LsxCT7iUtkep-K8'
-    });
-    el.setAttribute('data-widget-id', widgetId);
-    recaptchaWidgets.push({el: el, id: widgetId});
-  });
-}
-function submitForm(btn) {
-  var container = btn.parentElement;
-  // Walk up to find the form body
-  var p = btn;
-  for (var i = 0; i < 5; i++) {
-    p = p.parentElement;
-    if (!p) break;
-    var rc = p.querySelector('.g-recaptcha');
-    if (rc) { container = p; break; }
-  }
-  var rcEl = container ? container.querySelector('.g-recaptcha') : null;
-  var errorEl = container ? container.querySelector('.recaptcha-error') : null;
-  var widgetId = rcEl ? rcEl.getAttribute('data-widget-id') : null;
-  var response = (widgetId !== null && widgetId !== undefined)
-    ? grecaptcha.getResponse(parseInt(widgetId))
-    : grecaptcha.getResponse();
-  if (!response || response.length === 0) {
-    if (errorEl) errorEl.style.display = 'block';
-    return;
-  }
-  if (errorEl) errorEl.style.display = 'none';
-  window.location.href = 'https://ecoairconcleaning.com.au/thank-you/';
-}
 </script>
 </head>
 <body>
@@ -384,28 +437,49 @@ function submitForm(btn) {
           <p>We respond within 24 hours, usually same day</p>
         </div>
         <div class="form-body">
-          <div class="fg">
-            <div class="fr"><label>First Name</label><input type="text" placeholder="Your name"></div>
-            <div class="fr"><label>Phone</label><input type="tel" placeholder="04xx xxx xxx"></div>
-          </div>
-          <div class="fr"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-          <div class="fr"><label>Suburb / Postcode</label><input type="text" placeholder="e.g. Parramatta 2150"></div>
-          <div class="fr"><label>Service Needed</label>
-            <select>
-              <option>Split System Cleaning</option>
-              <option>Aircon Mould Removal</option>
-              <option>Air Duct Cleaning</option>
-              <option>Condenser Service</option>
-              <option>Full AC Maintenance</option>
-              <option>Other / Not Sure</option>
-            </select>
-          </div>
-          <div class="fr"><label>Message (optional)</label><textarea placeholder="AC details, mould concerns, number of units..."></textarea></div>
-          <div class="recaptcha-wrap"><div class="g-recaptcha"></div></div>
-          <div class="recaptcha-error">Please tick the checkbox above to confirm you are not a robot.</div>
-          <button class="btn-submit" type="button" onclick="submitForm(this)">Send My Free Quote Request</button>
-          <p class="form-note">No spam. No obligation. 100% free.</p>
-        </div>
+        <form class="elementor-form" method="post" name="New Form" aria-label="New Form">
+  <input type="hidden" name="post_id" value="1945">
+  <input type="hidden" name="form_id" value="2c0bae1">
+  <input type="hidden" name="referer_title" value="ac-cleaning-sydney - Eco aircon cleaning">
+  <input type="hidden" name="queried_id" value="1945">
+  <div class="elementor-form-fields-wrapper elementor-labels-above">
+    <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-100">
+      <input size="1" type="text" name="form_fields[name]" id="form-field-name" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Name">
+    </div>
+    <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
+      <input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Email" required="required">
+    </div>
+    <div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_05febb9 elementor-col-100 elementor-field-required">
+      <input size="1" type="tel" name="form_fields[field_05febb9]" id="form-field-field_05febb9" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Phone" required="required" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+    </div>
+    <div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_a6f0186 elementor-col-100 elementor-field-required">
+      <input size="1" type="tel" name="form_fields[field_a6f0186]" id="form-field-field_a6f0186" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Post Code" required="required" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+    </div>
+    <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-field_5b69308 elementor-col-100">
+      <div class="elementor-field elementor-select-wrapper remove-before">
+        <select name="form_fields[field_5b69308]" id="form-field-field_5b69308" class="elementor-field-textual elementor-size-sm">
+          <option value="I'm interested in">I'm interested in</option>
+          <option value="Air Duct Cleaning">Air Duct Cleaning</option>
+          <option value="Dryer Vent Cleaning">Dryer Vent Cleaning</option>
+          <option value="Split system cleaning">Split system cleaning</option>
+          <option value="AC Condenser Service">AC Condenser Service</option>
+          <option value="Mold removal">Mold removal</option>
+        </select>
+      </div>
+    </div>
+    <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-message elementor-col-100">
+      <textarea class="elementor-field-textual elementor-field elementor-size-sm" name="form_fields[message]" id="form-field-message" rows="4" placeholder="Message"></textarea>
+    </div>
+    <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+      <button class="elementor-button elementor-size-sm" type="submit">
+        <span class="elementor-button-content-wrapper">
+          <span class="elementor-button-text">Send</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</form>
+      </div>
       </div>
     </div>
   </div>
@@ -935,27 +1009,48 @@ function submitForm(btn) {
       <div class="ff-card">
         <h3>Free Quote Request</h3>
         <p>We will respond within 24 hours, usually the same day.</p>
-        <div class="fg">
-          <div class="fr"><label>Name</label><input type="text" placeholder="Your name"></div>
-          <div class="fr"><label>Phone</label><input type="tel" placeholder="04xx xxx xxx"></div>
-        </div>
-        <div class="fr"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-        <div class="fr"><label>Postcode</label><input type="text" placeholder="e.g. 2000"></div>
-        <div class="fr"><label>Service</label>
-          <select>
-            <option>Split System Cleaning</option>
-            <option>Aircon Mould Removal</option>
-            <option>Air Duct Cleaning</option>
-            <option>Condenser Service</option>
-            <option>Full Aircon Maintenance</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="fr"><label>Message</label><textarea placeholder="Number of units, mould concerns, any other details..."></textarea></div>
-        <div class="recaptcha-wrap"><div class="g-recaptcha"></div></div>
-          <div class="recaptcha-error">Please tick the checkbox above to confirm you are not a robot.</div>
-          <button class="btn-submit" type="button" onclick="submitForm(this)">Send My Free Quote Request</button>
-        <p class="form-note">100% free. No spam. No obligation.</p>
+        <form class="elementor-form" method="post" name="New Form" aria-label="New Form">
+  <input type="hidden" name="post_id" value="1945">
+  <input type="hidden" name="form_id" value="2c0bae1">
+  <input type="hidden" name="referer_title" value="ac-cleaning-sydney - Eco aircon cleaning">
+  <input type="hidden" name="queried_id" value="1945">
+  <div class="elementor-form-fields-wrapper elementor-labels-above">
+    <div class="elementor-field-type-text elementor-field-group elementor-col-100">
+      <input size="1" type="text" name="form_fields[name]" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Name">
+    </div>
+    <div class="elementor-field-type-email elementor-field-group elementor-col-100 elementor-field-required">
+      <input size="1" type="email" name="form_fields[email]" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Email" required="required">
+    </div>
+    <div class="elementor-field-type-tel elementor-field-group elementor-col-100 elementor-field-required">
+      <input size="1" type="tel" name="form_fields[field_05febb9]" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Phone" required="required" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters are accepted.">
+    </div>
+    <div class="elementor-field-type-tel elementor-field-group elementor-col-100 elementor-field-required">
+      <input size="1" type="tel" name="form_fields[field_a6f0186]" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Post Code" required="required" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers are accepted.">
+    </div>
+    <div class="elementor-field-type-select elementor-field-group elementor-col-100">
+      <div class="elementor-field elementor-select-wrapper remove-before">
+        <select name="form_fields[field_5b69308]" class="elementor-field-textual elementor-size-sm">
+          <option value="I'm interested in">I'm interested in</option>
+          <option value="Air Duct Cleaning">Air Duct Cleaning</option>
+          <option value="Dryer Vent Cleaning">Dryer Vent Cleaning</option>
+          <option value="Split system cleaning">Split system cleaning</option>
+          <option value="AC Condenser Service">AC Condenser Service</option>
+          <option value="Mold removal">Mold removal</option>
+        </select>
+      </div>
+    </div>
+    <div class="elementor-field-type-textarea elementor-field-group elementor-col-100">
+      <textarea class="elementor-field-textual elementor-field elementor-size-sm" name="form_fields[message]" rows="4" placeholder="Message"></textarea>
+    </div>
+    <div class="elementor-field-group elementor-col-100 e-form__buttons">
+      <button class="elementor-button elementor-size-sm" type="submit">
+        <span class="elementor-button-content-wrapper">
+          <span class="elementor-button-text">Send</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</form>
       </div>
     </div>
   </div>
