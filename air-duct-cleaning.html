@@ -75,12 +75,17 @@
   .wave svg{display:block;height:32px}
 
   /* BRANDS */
-  .brands{background:var(--mist);padding:32px 0;border-bottom:1px solid #E2E8F0}
-  .brands-inner{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:center}
-  .brands-lbl{font-size:12px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.8px;width:100%;text-align:center;margin-bottom:4px}
-  .brand-logo{background:white;border:1px solid #E2E8F0;border-radius:10px;padding:10px 18px;display:flex;align-items:center;justify-content:center;height:54px}
-  .brand-logo img{height:30px;width:auto;object-fit:contain;filter:grayscale(20%);transition:filter .2s}
-  .brand-logo:hover img{filter:grayscale(0%)}
+  .brands{background:var(--mist);padding:28px 0;border-bottom:1px solid #E2E8F0;overflow:hidden;position:relative}
+  .brands-lbl{font-size:12px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.8px;text-align:center;margin-bottom:14px}
+  .brands-track-wrap{overflow:hidden;width:100%;position:relative}
+  .brands-track-wrap::before,.brands-track-wrap::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
+  .brands-track-wrap::before{left:0;background:linear-gradient(to right,var(--mist),transparent)}
+  .brands-track-wrap::after{right:0;background:linear-gradient(to left,var(--mist),transparent)}
+  .brands-track{display:flex;align-items:center;gap:16px;width:max-content;animation:brandScroll 28s linear infinite}
+  .brands-track.paused{animation-play-state:paused}
+  .brand-logo{background:white;border:1px solid #E2E8F0;border-radius:10px;padding:10px 18px;display:flex;align-items:center;justify-content:center;height:54px;flex-shrink:0}
+  .brand-logo img{height:30px;width:auto;object-fit:contain}
+  @keyframes brandScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
   /* BUTTONS */
   .btn-g{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:white;font-family:"Syne",sans-serif;font-weight:700;font-size:15px;padding:13px 24px;border-radius:10px;transition:all .2s;margin-top:24px;margin-right:12px}
@@ -504,9 +509,17 @@
 
 <!-- BRANDS -->
 <section class="brands">
-  <div class="container">
-    <div class="brands-inner">
-      <span class="brands-lbl">We service all ducted brands:</span>
+  <div class="brands-lbl">We service all ducted brands:</div>
+  <div class="brands-track-wrap" id="brandsWrap">
+    <div class="brands-track" id="brandsTrack">
+      <div class="brand-logo"><img src="images/brands/fujitsu-air-conditioner-logo.png" alt="Fujitsu ducted air conditioning cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/panasonic-air-conditioner-logo.png" alt="Panasonic ducted air conditioning cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/midea-air-conditioner-logo.png" alt="Midea ducted air conditioning cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/lg-air-conditioner-logo.png" alt="LG ducted air conditioning cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/samsung-air-conditioner-logo.jpg" alt="Samsung ducted air conditioning cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/daikin-air-conditioner-logo.png" alt="Daikin ducted air conditioning cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/mitsubishi-air-conditioner-logo.png" alt="Mitsubishi ducted air conditioning cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/carrier-air-conditioner-logo.png" alt="Carrier ducted air conditioning cleaning Sydney" loading="lazy"></div>
       <div class="brand-logo"><img src="images/brands/fujitsu-air-conditioner-logo.png" alt="Fujitsu ducted air conditioning cleaning Sydney" loading="lazy"></div>
       <div class="brand-logo"><img src="images/brands/panasonic-air-conditioner-logo.png" alt="Panasonic ducted air conditioning cleaning Sydney" loading="lazy"></div>
       <div class="brand-logo"><img src="images/brands/midea-air-conditioner-logo.png" alt="Midea ducted air conditioning cleaning Sydney" loading="lazy"></div>
@@ -1084,5 +1097,15 @@ function toggleFaq(btn){
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"EcoAir Con Cleaning Sydney","description":"Professional air duct cleaning Sydney. Ducted AC cleaning, duct and vent cleaning, mould removal. All Sydney suburbs.","url":"https://ecoairconcleaning.com.au","telephone":"0483928714","address":{"@type":"PostalAddress","addressRegion":"NSW","addressCountry":"AU","addressLocality":"Sydney"},"areaServed":{"@type":"City","name":"Sydney"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"150","bestRating":"5","worstRating":"1"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How often should I get my air ducts cleaned in Sydney?","acceptedAnswer":{"@type":"Answer","text":"We recommend professional air duct cleaning every 12 months for most Sydney homes, or every 6 months if you have pets, children or allergy sufferers."}},{"@type":"Question","name":"How much does air duct cleaning cost in Sydney?","acceptedAnswer":{"@type":"Answer","text":"Cost depends on system size, number of vents and contamination level. We provide free upfront quotes with no hidden fees."}},{"@type":"Question","name":"Do you remove mould from air ducts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Mould removal is included in our air duct cleaning service. We use eco-friendly products to eliminate mould and treat areas to prevent regrowth."}},{"@type":"Question","name":"Do you offer same-day air duct cleaning in Sydney?","acceptedAnswer":{"@type":"Answer","text":"Yes. We offer same-day bookings across all Sydney suburbs. Call 0483 928 714 or submit a quote request online."}}]}</script>
+
+<script>
+(function(){
+  var track = document.getElementById('brandsTrack');
+  if(!track) return;
+  var wrap = document.getElementById('brandsWrap');
+  wrap.addEventListener('mouseenter', function(){ track.classList.add('paused'); });
+  wrap.addEventListener('mouseleave', function(){ track.classList.remove('paused'); });
+})();
+</script>
 </body>
 </html>
