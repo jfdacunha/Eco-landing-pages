@@ -71,15 +71,13 @@
   /* BRANDS */
   .brands{background:var(--mist);padding:28px 0;border-bottom:1px solid #E2E8F0;overflow:hidden;position:relative}
   .brands-lbl{font-size:12px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.8px;text-align:center;margin-bottom:14px}
-  .brands-track-wrap{overflow:hidden;width:100%;position:relative}
+  .brands-track-wrap{overflow:hidden;width:100%;position:relative;cursor:default}
   .brands-track-wrap::before,.brands-track-wrap::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
   .brands-track-wrap::before{left:0;background:linear-gradient(to right,var(--mist),transparent)}
   .brands-track-wrap::after{right:0;background:linear-gradient(to left,var(--mist),transparent)}
-  .brands-track{display:flex;align-items:center;gap:16px;width:max-content;animation:brandScroll 28s linear infinite}
-  .brands-track.paused{animation-play-state:paused}
-  .brand-logo{background:white;border:1px solid #E2E8F0;border-radius:10px;padding:10px 18px;display:flex;align-items:center;justify-content:center;height:54px;flex-shrink:0}
-  .brand-logo img{height:30px;width:auto;object-fit:contain}
-  @keyframes brandScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .brands-track{display:flex;align-items:center;gap:24px;width:max-content;will-change:transform}
+  .brand-logo{background:white;border:1px solid #E2E8F0;border-radius:10px;padding:12px 22px;display:flex;align-items:center;justify-content:center;height:64px;flex-shrink:0}
+  .brand-logo img{height:38px;width:auto;object-fit:contain}
 
   /* SHARED */
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
@@ -275,8 +273,8 @@
     .prob-photos .pp img{height:140px}
     .rev-card{padding:18px}
   
-    .brand-logo{padding:8px 12px;height:46px}
-    .brand-logo img{height:24px}
+    .brand-logo{padding:8px 12px;height:48px}
+    .brand-logo img{height:26px}
     .brands-track{gap:12px}
     .ba-pair{gap:0}
     .ba-pane{margin:0;padding:0}
@@ -1080,13 +1078,48 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"EcoAir Con Cleaning Sydney","description":"Sydney trusted aircon cleaning service. Deep clean, mould removal and maintenance for all AC brands.","url":"https://ecoairconcleaning.com.au","telephone":"0483928714","address":{"@type":"PostalAddress","addressRegion":"NSW","addressCountry":"AU","addressLocality":"Sydney"},"areaServed":{"@type":"City","name":"Sydney"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"150","bestRating":"5","worstRating":"1"}}</script>
 
+
 <script>
 (function(){
-  var track = document.getElementById('brandsTrack');
-  if(!track) return;
   var wrap = document.getElementById('brandsWrap');
-  wrap.addEventListener('mouseenter', function(){ track.classList.add('paused'); });
-  wrap.addEventListener('mouseleave', function(){ track.classList.remove('paused'); });
+  var track = document.getElementById('brandsTrack');
+  if(!track||!wrap) return;
+
+  // Clone the set once for seamless loop
+  var originals = Array.from(track.children);
+  originals.forEach(function(el){ track.appendChild(el.cloneNode(true)); });
+
+  var x = 0;
+  var speed = 0.5; // px per frame
+  var paused = false;
+  var raf;
+
+  function getHalfWidth(){
+    // Width of first half (original set) including gaps
+    var items = track.children;
+    var half = Math.floor(items.length / 2);
+    var total = 0;
+    var gap = 24;
+    for(var i=0;i<half;i++){
+      total += items[i].offsetWidth + gap;
+    }
+    return total;
+  }
+
+  function animate(){
+    if(!paused){
+      x -= speed;
+      var half = getHalfWidth();
+      if(Math.abs(x) >= half) x = 0; // seamless reset
+      track.style.transform = 'translateX(' + x + 'px)';
+    }
+    raf = requestAnimationFrame(animate);
+  }
+
+  wrap.addEventListener('mouseenter', function(){ paused = true; });
+  wrap.addEventListener('mouseleave', function(){ paused = false; });
+
+  animate();
 })();
 </script>
 </body>
