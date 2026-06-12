@@ -69,12 +69,17 @@
   .wave svg{display:block;height:32px}
 
   /* BRANDS */
-  .brands{background:var(--mist);padding:32px 0;border-bottom:1px solid #E2E8F0}
-  .brands-inner{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:center}
-  .brands-lbl{font-size:12px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.8px;width:100%;text-align:center;margin-bottom:4px}
-  .brand-logo{background:white;border:1px solid #E2E8F0;border-radius:10px;padding:10px 18px;display:flex;align-items:center;justify-content:center;height:54px}
-  .brand-logo img{height:30px;width:auto;object-fit:contain;filter:grayscale(20%);transition:filter .2s}
-  .brand-logo:hover img{filter:grayscale(0%)}
+  .brands{background:var(--mist);padding:28px 0;border-bottom:1px solid #E2E8F0;overflow:hidden;position:relative}
+  .brands-lbl{font-size:12px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.8px;text-align:center;margin-bottom:14px}
+  .brands-track-wrap{overflow:hidden;width:100%;position:relative}
+  .brands-track-wrap::before,.brands-track-wrap::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
+  .brands-track-wrap::before{left:0;background:linear-gradient(to right,var(--mist),transparent)}
+  .brands-track-wrap::after{right:0;background:linear-gradient(to left,var(--mist),transparent)}
+  .brands-track{display:flex;align-items:center;gap:16px;width:max-content;animation:brandScroll 28s linear infinite}
+  .brands-track.paused{animation-play-state:paused}
+  .brand-logo{background:white;border:1px solid #E2E8F0;border-radius:10px;padding:10px 18px;display:flex;align-items:center;justify-content:center;height:54px;flex-shrink:0}
+  .brand-logo img{height:30px;width:auto;object-fit:contain}
+  @keyframes brandScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
   /* SHARED */
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
@@ -270,9 +275,9 @@
     .prob-photos .pp img{height:140px}
     .rev-card{padding:18px}
   
-    .brands-inner{gap:10px}
     .brand-logo{padding:8px 12px;height:46px}
     .brand-logo img{height:24px}
+    .brands-track{gap:12px}
     .ba-pair{gap:0}
     .ba-pane{margin:0;padding:0}
     .wave svg{height:24px}}
@@ -492,9 +497,17 @@
 
 <!-- BRANDS -->
 <section class="brands">
-  <div class="container">
-    <div class="brands-inner">
-      <span class="brands-lbl">We clean all brands:</span>
+  <div class="brands-lbl">We clean all brands:</div>
+  <div class="brands-track-wrap" id="brandsWrap">
+    <div class="brands-track" id="brandsTrack">
+      <div class="brand-logo"><img src="images/brands/fujitsu-air-conditioner-logo.png" alt="Fujitsu air conditioner cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/panasonic-air-conditioner-logo.png" alt="Panasonic air conditioner cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/midea-air-conditioner-logo.png" alt="Midea air conditioner cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/lg-air-conditioner-logo.png" alt="LG air conditioner cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/samsung-air-conditioner-logo.jpg" alt="Samsung air conditioner cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/daikin-air-conditioner-logo.png" alt="Daikin air conditioner cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/mitsubishi-air-conditioner-logo.png" alt="Mitsubishi air conditioner cleaning Sydney" loading="lazy"></div>
+      <div class="brand-logo"><img src="images/brands/carrier-air-conditioner-logo.png" alt="Carrier air conditioner cleaning Sydney" loading="lazy"></div>
       <div class="brand-logo"><img src="images/brands/fujitsu-air-conditioner-logo.png" alt="Fujitsu air conditioner cleaning Sydney" loading="lazy"></div>
       <div class="brand-logo"><img src="images/brands/panasonic-air-conditioner-logo.png" alt="Panasonic air conditioner cleaning Sydney" loading="lazy"></div>
       <div class="brand-logo"><img src="images/brands/midea-air-conditioner-logo.png" alt="Midea air conditioner cleaning Sydney" loading="lazy"></div>
@@ -1066,5 +1079,15 @@
 </div>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"EcoAir Con Cleaning Sydney","description":"Sydney trusted aircon cleaning service. Deep clean, mould removal and maintenance for all AC brands.","url":"https://ecoairconcleaning.com.au","telephone":"0483928714","address":{"@type":"PostalAddress","addressRegion":"NSW","addressCountry":"AU","addressLocality":"Sydney"},"areaServed":{"@type":"City","name":"Sydney"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"150","bestRating":"5","worstRating":"1"}}</script>
+
+<script>
+(function(){
+  var track = document.getElementById('brandsTrack');
+  if(!track) return;
+  var wrap = document.getElementById('brandsWrap');
+  wrap.addEventListener('mouseenter', function(){ track.classList.add('paused'); });
+  wrap.addEventListener('mouseleave', function(){ track.classList.remove('paused'); });
+})();
+</script>
 </body>
 </html>
