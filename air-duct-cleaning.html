@@ -1036,6 +1036,10 @@ function toggleFaq(btn){
       i.querySelector('.faq-q').classList.remove('open');
       i.querySelector('.faq-a').classList.remove('open');
     }
+  });
+  btn.classList.toggle('open');
+  ans.classList.toggle('open');
+}
 
 (function(){
   var wrap = document.querySelector('.carousel-wrap');
