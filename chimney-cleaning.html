@@ -879,5 +879,47 @@ function toggleFaq(btn){var item=btn.parentElement;var ans=item.querySelector('.
 </script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"EcoAir Chimney Cleaning Sydney","description":"Professional chimney cleaning Sydney. Chimney sweep, flue cleaning, soot removal and fireplace inspection services across all Sydney suburbs.","telephone":"0483 928 714","address":{"@type":"PostalAddress","addressRegion":"NSW","addressCountry":"AU","addressLocality":"Sydney"},"areaServed":{"@type":"City","name":"Sydney"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"150","bestRating":"5","worstRating":"1"}}</script>
+<script>
+(function(){
+  var wrap = document.getElementById('brandsWrap');
+  var track = document.getElementById('brandsTrack');
+  if(!track||!wrap) return;
+
+  // Clone the set once for seamless loop
+  var originals = Array.from(track.children);
+  originals.forEach(function(el){ track.appendChild(el.cloneNode(true)); });
+
+  var x = 0;
+  var speed = 0.5;
+  var paused = false;
+  var raf;
+
+  function getHalfWidth(){
+    var items = track.children;
+    var half = Math.floor(items.length / 2);
+    var total = 0;
+    var gap = 24;
+    for(var i=0;i<half;i++){
+      total += items[i].offsetWidth + gap;
+    }
+    return total;
+  }
+
+  function animate(){
+    if(!paused){
+      x -= speed;
+      var half = getHalfWidth();
+      if(Math.abs(x) >= half) x = 0;
+      track.style.transform = 'translateX(' + x + 'px)';
+    }
+    raf = requestAnimationFrame(animate);
+  }
+
+  wrap.addEventListener('mouseenter', function(){ paused = true; });
+  wrap.addEventListener('mouseleave', function(){ paused = false; });
+
+  animate();
+})();
+</script>
 </body>
 </html>
