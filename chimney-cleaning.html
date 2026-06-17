@@ -31,7 +31,7 @@
 
   /* HERO */
   .hero{background:linear-gradient(135deg,#04243D 0%,#062E52 50%,#0A4A7A 100%);position:relative;overflow:hidden;padding:64px 0 0}
-  .hero-bg-img{position:absolute;inset:0;background-image:url('https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-sweep-rooftop-brush-cleaning-sydney.jpg');background-size:cover;background-position:center 30%;opacity:0.32}
+  .hero-bg-img{position:absolute;inset:0;background-image:url('https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-sweep-rooftop-brush-cleaning-sydney.jpg');background-size:cover;background-position:center center;opacity:0.32}
   .hero-bg-fade{position:absolute;inset:0;background:linear-gradient(100deg,#04243D 0%,rgba(6,46,82,0.92) 35%,rgba(10,74,122,0.55) 70%,rgba(10,74,122,0.25) 100%)}
   .hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3C/g%3E%3C/svg%3E")}
   .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 390px;gap:48px;align-items:start}
@@ -244,7 +244,7 @@
   @media(max-width:960px){
     .hero-inner,.ba-grid,.prob-grid,.ben-grid,.ff-grid{grid-template-columns:1fr;gap:28px}
     .hero{padding:56px 0 32px}
-    .hero-bg-img{opacity:0.22;background-position:center 25%}
+    .hero-bg-img{opacity:0.22;background-position:center center}
     .hero-bg-fade{background:linear-gradient(170deg,#04243D 0%,rgba(6,46,82,0.95) 45%,rgba(10,74,122,0.7) 100%)}
     .intro-grid{grid-template-columns:1fr 1fr}
     .proc-steps{grid-template-columns:1fr 1fr;gap:28px}
@@ -885,5 +885,46 @@ function toggleFaq(btn){var item=btn.parentElement;var ans=item.querySelector('.
 </script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"EcoAir Chimney Cleaning Sydney","description":"Professional chimney cleaning Sydney. Chimney sweep, flue cleaning, soot removal and fireplace inspection services across all Sydney suburbs.","telephone":"0483 928 714","address":{"@type":"PostalAddress","addressRegion":"NSW","addressCountry":"AU","addressLocality":"Sydney"},"areaServed":{"@type":"City","name":"Sydney"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"150","bestRating":"5","worstRating":"1"}}</script>
+<script>
+(function(){
+  var wrap = document.getElementById('brandsWrap');
+  var track = document.getElementById('brandsTrack');
+  if(!track||!wrap) return;
+
+  var originals = Array.from(track.children);
+  originals.forEach(function(el){ track.appendChild(el.cloneNode(true)); });
+
+  var x = 0;
+  var speed = 0.5;
+  var paused = false;
+  var raf;
+
+  function getHalfWidth(){
+    var items = track.children;
+    var half = Math.floor(items.length / 2);
+    var total = 0;
+    var gap = 24;
+    for(var i=0;i<half;i++){
+      total += items[i].offsetWidth + gap;
+    }
+    return total;
+  }
+
+  function animate(){
+    if(!paused){
+      x -= speed;
+      var half = getHalfWidth();
+      if(Math.abs(x) >= half) x = 0;
+      track.style.transform = 'translateX(' + x + 'px)';
+    }
+    raf = requestAnimationFrame(animate);
+  }
+
+  wrap.addEventListener('mouseenter', function(){ paused = true; });
+  wrap.addEventListener('mouseleave', function(){ paused = false; });
+
+  animate();
+})();
+</script>
 </body>
 </html>
