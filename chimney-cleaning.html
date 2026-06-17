@@ -18,7 +18,7 @@
     --radius:14px;--radius-lg:20px;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden}
   body{font-family:"DM Sans",sans-serif;font-size:16px;line-height:1.6;color:var(--charcoal);background:var(--white);overflow-x:hidden;padding-bottom:72px}
   h1,h2,h3,h4{font-family:"Poppins",sans-serif;line-height:1.15;color:var(--blue-deep)}
   img{max-width:100%;display:block}
@@ -254,9 +254,9 @@
     .rev-btns{flex-direction:column;align-items:center}
     .carousel-outer{padding:0 44px}
   }
-    .mini-grid{grid-template-columns:1fr 1fr}
-  }
   @media(max-width:640px){
+    html,body{overflow-x:hidden;max-width:100vw}
+    *{max-width:100%}
     .intro-grid,.proc-steps{grid-template-columns:1fr}
     .fg{grid-template-columns:1fr}
     .btn-primary,.btn-ws,.btn-gs,.btn-g,.btn-ob,.btn-danger,.btn-gw{width:100%;justify-content:center;margin-right:0}
@@ -879,47 +879,5 @@ function toggleFaq(btn){var item=btn.parentElement;var ans=item.querySelector('.
 </script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"EcoAir Chimney Cleaning Sydney","description":"Professional chimney cleaning Sydney. Chimney sweep, flue cleaning, soot removal and fireplace inspection services across all Sydney suburbs.","telephone":"0483 928 714","address":{"@type":"PostalAddress","addressRegion":"NSW","addressCountry":"AU","addressLocality":"Sydney"},"areaServed":{"@type":"City","name":"Sydney"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"150","bestRating":"5","worstRating":"1"}}</script>
-<script>
-(function(){
-  var wrap = document.getElementById('brandsWrap');
-  var track = document.getElementById('brandsTrack');
-  if(!track||!wrap) return;
-
-  // Clone the set once for seamless loop
-  var originals = Array.from(track.children);
-  originals.forEach(function(el){ track.appendChild(el.cloneNode(true)); });
-
-  var x = 0;
-  var speed = 0.5;
-  var paused = false;
-  var raf;
-
-  function getHalfWidth(){
-    var items = track.children;
-    var half = Math.floor(items.length / 2);
-    var total = 0;
-    var gap = 24;
-    for(var i=0;i<half;i++){
-      total += items[i].offsetWidth + gap;
-    }
-    return total;
-  }
-
-  function animate(){
-    if(!paused){
-      x -= speed;
-      var half = getHalfWidth();
-      if(Math.abs(x) >= half) x = 0;
-      track.style.transform = 'translateX(' + x + 'px)';
-    }
-    raf = requestAnimationFrame(animate);
-  }
-
-  wrap.addEventListener('mouseenter', function(){ paused = true; });
-  wrap.addEventListener('mouseleave', function(){ paused = false; });
-
-  animate();
-})();
-</script>
 </body>
 </html>
