@@ -31,7 +31,7 @@
 
   /* HERO */
   .hero{background:linear-gradient(135deg,#04243D 0%,#062E52 50%,#0A4A7A 100%);position:relative;overflow:hidden;padding:64px 0 0}
-  .hero-bg-img{position:absolute;inset:0;background-image:url('https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-sweep-rooftop-brush-cleaning-sydney.jpg');background-size:cover;background-position:center center;opacity:0.32}
+  .hero-bg-img{position:absolute;inset:0;background-image:url('https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-sweep-technician-fireplace-cleaning-sydney.jpg');background-size:cover;background-position:center center;opacity:0.32}
   .hero-bg-fade{position:absolute;inset:0;background:linear-gradient(100deg,#04243D 0%,rgba(6,46,82,0.92) 35%,rgba(10,74,122,0.55) 70%,rgba(10,74,122,0.25) 100%)}
   .hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Ccircle cx='40' cy='40' r='30'/%3E%3C/g%3E%3C/svg%3E")}
   .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 390px;gap:48px;align-items:start}
@@ -410,6 +410,18 @@
     flex-direction: column;
     gap: 0;
   }
+
+  /* SERVICES PHOTO GRID */
+  .svc-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+  .svc-photo-card{border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:0 2px 16px rgba(10,40,80,0.08);transition:transform .2s,box-shadow .2s}
+  .svc-photo-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(10,40,80,0.14)}
+  .svc-photo-card img{width:100%;height:200px;object-fit:cover;display:block}
+  .svc-photo-body{padding:16px 18px 20px}
+  .svc-photo-body h3{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--blue-deep);margin-bottom:6px}
+  .svc-photo-body p{font-size:13px;color:var(--slate);line-height:1.6;margin:0}
+  .svc-photo-tag{display:inline-block;background:var(--blue);color:white;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+  @media(max-width:960px){.svc-photo-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.svc-photo-grid{grid-template-columns:1fr}}
 </style>
 <body>
 
@@ -520,29 +532,51 @@
 <section class="section">
   <div class="container">
     <p class="eyebrow" style="text-align:center">Local Chimney Sweep Sydney</p>
-    <h2 class="heading" style="text-align:center;max-width:680px;margin:0 auto 14px">What Does Professional Chimney Cleaning Include?</h2>
-    <p class="subtext" style="text-align:center;max-width:600px;margin:0 auto">A full chimney sweep removes built-up soot and creosote, clears blockages and checks your flue and fireplace for safety, so you can enjoy your fire with total peace of mind.</p>
-    <div class="intro-grid">
-      <div class="intro-card">
-        <div class="intro-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    <h2 class="heading" style="text-align:center;max-width:680px;margin:0 auto 14px">Chimney Services We Offer</h2>
+    <p class="subtext" style="text-align:center;max-width:600px;margin:0 auto">We handle every type of chimney and fireplace system in Sydney homes. Each service includes a full safety check before we leave.</p>
+    <div class="svc-photo-grid">
+      <div class="svc-photo-card">
+        <img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-sweep-technician-fireplace-cleaning-sydney.jpg" alt="Chimney sweep technician cleaning fireplace with vacuum and brush equipment Sydney" loading="lazy">
+        <div class="svc-photo-body">
+          <span class="svc-photo-tag">Most Popular</span>
+          <h3>Chimney Sweeping &amp; Cleaning</h3>
+          <p>Routine annual service for all chimney types. Full rotary brush sweep from rooftop to firebox with industrial vacuum containment.</p>
         </div>
-        <h3>Chimney Sweep</h3>
-        <p>Full rotary brush sweep of the entire flue from rooftop to firebox, clearing soot, creosote and debris buildup.</p>
       </div>
-      <div class="intro-card">
-        <div class="intro-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 10 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+      <div class="svc-photo-card">
+        <img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/wood-heater-flue-cleaning-before-soot-buildup-sydney.jpg" alt="Wood heater insert with heavy soot buildup before professional flue cleaning Sydney" loading="lazy">
+        <div class="svc-photo-body">
+          <h3>Wood Heater Flue Cleaning</h3>
+          <p>Specialist cleaning for wood heater flues and combustion chambers. Removes dangerous creosote and soot buildup.</p>
         </div>
-        <h3>Chimney Flue Cleaning</h3>
-        <p>Deep clean of the flue liner to remove creosote buildup, restoring proper airflow and reducing fire risk.</p>
       </div>
-      <div class="intro-card">
-        <div class="intro-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
+      <div class="svc-photo-card">
+        <img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-flue-inspection-inside-rooftop-sydney.jpg" alt="View inside chimney flue from rooftop during professional inspection Sydney" loading="lazy">
+        <div class="svc-photo-body">
+          <h3>Chimney Inspection &amp; CCTV</h3>
+          <p>Full visual inspection of your flue, firebox and damper. We identify cracks, blockages and damage before they become costly repairs.</p>
         </div>
-        <h3>Fireplace Inspection</h3>
-        <p>Full safety inspection of your firebox, damper and surrounding brickwork to identify any issues early.</p>
+      </div>
+      <div class="svc-photo-card">
+        <img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-cleaning-technician-vacuum-sydney.jpg" alt="Fireplace cleaning technician removing soot and creosote with industrial vacuum Sydney" loading="lazy">
+        <div class="svc-photo-body">
+          <h3>Fireplace Cleaning</h3>
+          <p>Deep clean of your fireplace interior, glass doors, surrounds and ashpit. Deodorise and restore your fireplace to full working condition.</p>
+        </div>
+      </div>
+      <div class="svc-photo-card">
+        <img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-soot-removal-brush-cleaning-sydney.jpg" alt="Professional chimney soot removal using rotary sweeping brush Sydney" loading="lazy">
+        <div class="svc-photo-body">
+          <h3>Chimney Soot Removal</h3>
+          <p>Heavy soot and creosote removal using professional rotary brush systems. Reduces fire risk and improves draw and airflow.</p>
+        </div>
+      </div>
+      <div class="svc-photo-card">
+        <img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-cap-cowl-installation-rooftop-sydney.jpg" alt="Stainless steel chimney cap cowl installed on rooftop flue pipe Sydney" loading="lazy">
+        <div class="svc-photo-body">
+          <h3>Chimney Cap &amp; Cowl Installation</h3>
+          <p>Supply and fit stainless steel chimney caps and cowls. Prevents rain, animals and debris from entering your flue and damaging your system.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -623,6 +657,9 @@
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-inspection-cleaning-products-sydney.jpg" alt="Fireplace inspection and cleaning with professional cleaning products Sydney" loading="lazy"><div class="gallery-caption">Fireplace inspection</div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-glass-door-cleaning-sydney.jpg" alt="Fireplace glass door being cleaned and polished after soot buildup Sydney" loading="lazy"><div class="gallery-caption">Glass door detailing</div></div>
       <div class="gallery-item"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-soot-removal-brush-cleaning-sydney.jpg" alt="Professional chimney soot removal using rotary sweeping brush Sydney" loading="lazy"><div class="gallery-caption">Soot removal close up</div></div>
+      <div class="gallery-item"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/wood-heater-flue-cleaning-before-soot-buildup-sydney.jpg" alt="Wood heater insert with heavy soot buildup before cleaning Sydney" loading="lazy"><div class="gallery-caption">Wood heater before clean</div></div>
+      <div class="gallery-item"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/wood-heater-flue-cleaning-after-professional-service-sydney.jpg" alt="Wood heater insert after professional flue cleaning Sydney" loading="lazy"><div class="gallery-caption">Wood heater after clean</div></div>
+      <div class="gallery-item"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-cap-cowl-installation-rooftop-sydney.jpg" alt="Stainless steel chimney cap cowl installed on rooftop Sydney" loading="lazy"><div class="gallery-caption">Cap cowl installation</div></div>
     </div>
   </div>
 </section>
