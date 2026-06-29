@@ -138,7 +138,7 @@
   .btn-gw:hover{background:rgba(255,255,255,0.12)}
 
   /* HOW WE CLEAN */
-  .proc-steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;margin-top:52px}
+  .proc-steps{display:grid;grid-template-columns:repeat(5,1fr);position:relative;margin-top:52px}
   .proc-steps::before{content:"";position:absolute;top:40px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue) 0%,var(--green) 100%);z-index:0}
   .proc-step{text-align:center;padding:0 16px;position:relative;z-index:1}
   .step-n{width:80px;height:80px;background:white;border:3px solid var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Poppins",sans-serif;font-weight:800;font-size:24px;color:var(--blue);margin:0 auto 20px;box-shadow:var(--shadow-md)}
@@ -258,6 +258,7 @@
     .rev-btns{flex-direction:column;align-items:center}
     .carousel-outer{padding:0 44px}
   }
+  @media(max-width:900px){.proc-steps{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:640px){
     html,body{overflow-x:hidden;max-width:100vw}
     *{max-width:100%}
@@ -637,6 +638,11 @@
         <div class="step-n">4</div>
         <h3>Finish</h3>
         <p>We vacuum all debris, clean the fireplace glass and surrounds, and leave everything spotless.</p>
+      </div>
+      <div class="proc-step">
+        <div class="step-n">5</div>
+        <h3>Certificate</h3>
+        <p>You receive an invoice that also serves as a safety certificate confirming your chimney is safe, valid for insurance purposes.</p>
       </div>
     </div>
   </div>
