@@ -108,7 +108,7 @@
     .why-point p{font-size:14px;color:var(--slate)}
 
     /* PROCESS */
-    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+    .process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;position:relative}
     .process-steps::before{content:"";position:absolute;top:28px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0.3),rgba(255,255,255,0.6),rgba(255,255,255,0.3));z-index:0}
     .process-step{text-align:center;position:relative;z-index:1}
     .step-num{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.4);color:#fff;font-family:"Poppins",sans-serif;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-md)}
@@ -124,9 +124,8 @@
     .ba-badge.after{right:16px;background:var(--green);color:#fff}
 
     /* PHOTO GRID */
-    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:220px;gap:10px;border-radius:var(--radius-lg);overflow:hidden;margin-top:40px}
-    .pg{overflow:hidden}
-    .pg.wide{grid-column:span 2}
+    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+    .pg{overflow:hidden;border-radius:10px;height:220px}
     .pg img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
     .pg:hover img{transform:scale(1.04)}
 
@@ -181,15 +180,17 @@
     .delay-3{transition-delay:.36s}
 
     @media(max-width:960px){
+      .process-steps{grid-template-columns:repeat(3,1fr)}
+      .photo-grid{grid-template-columns:repeat(3,1fr)}
       .hero-inner,.ff-grid,.why-grid,.map-layout{grid-template-columns:1fr;gap:32px}
       .hero-inner > div:last-child{display:none}
       .services-grid{grid-template-columns:1fr 1fr}
-      .process-steps{grid-template-columns:1fr 1fr}
+      .process-steps{grid-template-columns:1fr 1fr 1fr}
       .process-steps::before{display:none}
       .reviews-grid{grid-template-columns:1fr}
       .ba-split{grid-template-columns:1fr}
       .ba-side img{height:240px}
-      .photo-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+      .photo-grid{grid-template-columns:1fr 1fr}
       .map-circle{width:280px;height:280px;margin:0 auto}
       .map-circle-wrap{justify-content:center}
     }
@@ -223,7 +224,7 @@
         </div>
         <div class="stars-row">
           <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="stars-txt"><strong>5.0</strong> rated by <strong>Sydney homeowners</strong> on Google</span>
+          <span class="stars-txt"><strong>5.0</strong> rated by <strong>+150 Sydney homeowners</strong> on Google</span>
         </div>
         <div class="hero-btns">
           <a href="#contact" class="btn-primary" style="font-size:17px;padding:15px 30px">Get a Free Quote &#8594;</a>
@@ -382,7 +383,7 @@
           <div class="service-card-body">
             <h3>Chimney Sweeping</h3>
             <p>Annual chimney sweep to remove soot, creosote and debris from your flue. Reduces fire risk, improves draw and keeps your chimney safe all season.</p>
-            <span class="price-tag">From $199</span>
+            <span class="price-tag">From $350</span>
           </div>
         </div>
         <div class="service-card">
@@ -540,11 +541,12 @@
 
     <!-- Photo Gallery -->
     <div class="photo-grid fade-up delay-1">
-      <div class="pg wide"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-sweep-technician-brick-chimney-sydney.jpg" alt="Chimney repair technician brick chimney Sydney" loading="lazy"></div>
+      <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-sweep-technician-brick-chimney-sydney.jpg" alt="Chimney repair technician on brick chimney Sydney" loading="lazy"></div>
+      <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-wood-burning-technician-service-cleaning-sydney.jpg" alt="Technician servicing wood burning fireplace Sydney" loading="lazy"></div>
       <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-cap-cowl-installation-rooftop-sydney.jpg" alt="Chimney cap cowl installation rooftop Sydney" loading="lazy"></div>
-      <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-technician-vacuum-cleaning-wood-fireplace-sydney.jpg" alt="Fireplace glass door service Sydney" loading="lazy"></div>
-      <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-flue-inspection-inside-rooftop-sydney.jpg" alt="Chimney flue inspection rooftop Sydney" loading="lazy"></div>
-      <div class="pg wide"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-cleaning-technician-vacuum-sydney.jpg" alt="Fireplace cleaning technician vacuum Sydney" loading="lazy"></div>
+      <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-technician-vacuum-cleaning-wood-fireplace-sydney.jpg" alt="Technician vacuuming inside wood fireplace Sydney" loading="lazy"></div>
+      <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/chimney-flue-inspection-inside-rooftop-sydney.jpg" alt="Chimney flue inspection inside rooftop Sydney" loading="lazy"></div>
+      <div class="pg"><img src="https://raw.githubusercontent.com/jfdacunha/Eco-landing-pages/main/images/chimney/fireplace-cleaning-technician-vacuum-sydney.jpg" alt="Fireplace cleaning technician with vacuum Sydney" loading="lazy"></div>
     </div>
 
     <!-- SWEEPING TAB -->
@@ -574,28 +576,33 @@
     <div style="text-align:center;margin-bottom:56px" class="fade-up">
       <div class="red-bar" style="margin:0 auto 16px"></div>
       <p class="eyebrow">How It Works</p>
-      <h2 class="heading">From Quote to Completion in 4 Steps</h2>
+      <h2 class="heading">From Quote to Completion in 5 Steps</h2>
     </div>
     <div class="process-steps fade-up delay-1">
       <div class="process-step">
         <div class="step-num">1</div>
-        <h4>Call or Request Online</h4>
-        <p>Call 0483 928 714 or fill out the quote form. We call you back within minutes.</p>
+        <h4>Inspect</h4>
+        <p>We assess your chimney or fireplace to identify the issue, creosote buildup, damage or blockages.</p>
       </div>
       <div class="process-step">
         <div class="step-num">2</div>
-        <h4>Free Inspection and Quote</h4>
-        <p>We inspect your chimney or fireplace and provide a detailed written quote with no obligation.</p>
+        <h4>Protect</h4>
+        <p>We lay drop sheets and seal the work area so no soot, dust or debris enters your home.</p>
       </div>
       <div class="process-step">
         <div class="step-num">3</div>
-        <h4>Work Completed</h4>
-        <p>Booked at a time that suits you. Our team arrives on time and cleans up completely after.</p>
+        <h4>Complete the Work</h4>
+        <p>Whether it is a sweep, repair or installation, our team completes the job to Australian standards.</p>
       </div>
       <div class="process-step">
         <div class="step-num">4</div>
-        <h4>Safety Check and Sign Off</h4>
-        <p>All work is tested and signed off before we leave. Gas work is certified on completion.</p>
+        <h4>Finish</h4>
+        <p>We vacuum all debris, clean the fireplace glass and surrounds, and leave everything spotless.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <h4>Certificate</h4>
+        <p>You receive an invoice that also serves as a safety certificate confirming your chimney or fireplace is safe, valid for insurance purposes.</p>
       </div>
     </div>
     <div class="section-cta fade-up delay-2">
